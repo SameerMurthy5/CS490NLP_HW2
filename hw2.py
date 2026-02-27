@@ -115,7 +115,7 @@ def train_loop(
             # TODO: Move batch components to device
             input_ids = batch['input_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
-            labels = batch['label'].squeeze(1).to(device)
+            labels = batch['label'].view(-1).to(device)
             # TODO: Forward pass, Loss calculation, Backward pass, Optimizer step
             optimizer.zero_grad()
             logits = model(input_ids, attention_mask)
